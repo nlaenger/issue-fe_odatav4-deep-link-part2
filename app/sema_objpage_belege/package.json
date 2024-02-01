@@ -1,0 +1,23 @@
+{
+  "name": "semacom.dscgmbh.poc.replace_me.cap_fe_link.objpage_belege",
+  "version": "0.0.1",
+  "description": "Belege",
+  "keywords": [
+    "ui5",
+    "openui5",
+    "sapui5"
+  ],
+  "main": "webapp/index.html",
+  "scripts": {
+    "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
+    "deploy": "fiori verify",
+    "deploy-config": "fiori add deploy-config"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@ui5/cli": "3.8.0",
+    "@sap/ux-ui5-tooling": "1.12.1",
+    "@sap/ux-specification": "1.120.1",
+    "@sap-ux/ui5-middleware-fe-mockserver": "2.2.16"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "semaobjpagebelege",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:feop",
+      "version": "1.11.5",
+      "toolsId": "898d3404-a484-4793-b2c3-77d949d19e8d"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/main-sema/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "belege-view": {
+          "semanticObject": "Semabelege",
+          "action": "view",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {
+              "ID": {
+                "renameTo": "ID"
+              }
+            },
+            "additionalParameters": "ignored"
+          }
+        },
+        "positionen-view": {
+          "semanticObject": "Semabelege",
+          "action": "view-position",
+          "title": "{{flpTitle}}",
+          "hideLauncher": true,
+          "signature": {
+            "parameters": {
+              "Beleg": {
+                "renameTo": "Beleg"
+              },
+              "up__ID": {
+                "renameTo": "up__Beleg"
+              },
+              "ID": {
+                "renameTo": "Position"
+              }
+            },
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.4",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": "Belege({key}):?query:",
+          "name": "BelegeObjectPage",
+          "target": "BelegeObjectPage"
+        },
+        {
+          "pattern": "Belege({key})/items({key2}):?query:",
+          "name": "PositionenObjectPage",
+          "target": "PositionenObjectPage"
+        }
+      ],
+      "targets": {
+        "BelegeObjectPage": {
+          "type": "Component",
+          "id": "BelegeObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Belege",
+              "allowDeepLinking": true,
+              "content": {
+                "header": {
+                  "visible": false,
+                  "anchorBarVisible": false
+                }
+              },
+              
+              "navigation": {
+                "items": {
+                  "detail": {
+                    "route": "PositionenObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "PositionenObjectPage": {
+          "type": "Component",
+          "id": "PositionenObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Belege/items",
+              "allowDeepLinking": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

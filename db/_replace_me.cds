@@ -23,7 +23,6 @@ entity StepStatus : CodeList, {
 
 @odata.draft.enabled: true
 @fiori.draft.enabled: true
-@Common.SemanticKey : [ID]
 entity Belege : cuid {
     // cuid => Entity bekommt GUID key Feld mit dem Namen ID!
     @title: '{i18n>Belege.amount}'
@@ -43,10 +42,6 @@ entity Belege : cuid {
     items  : Composition of many Positionen;
 };
 
-annotate Belege.items with @Common.SemanticKey: [
-    up__ID,
-    ID
-];
 
 aspect Positionen : cuid {
 
@@ -60,12 +55,6 @@ aspect Positionen : cuid {
 
     steps   : Composition of many Arbeitsschritte;
 };
-
-annotate Belege.items.steps with @Common.SemanticKey: [
-    up__up__ID,
-    up__ID,
-    ID
-];
 
 aspect Arbeitsschritte : cuid {
     @title: '{i18n>Arbeitsschritte.stepName}'

@@ -49,6 +49,8 @@
   },
   "sapux": [
     "app/objpage_belege",
-    "app/listpage_belege"
+    "app/listpage_belege",
+    "app/sema_objpage_belege",
+    "app/sema_listpage_belege"
   ]
 }
