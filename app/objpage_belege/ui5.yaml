@@ -1,0 +1,8 @@
+specVersion: "2.5"
+metadata:
+  name: objpagebelege
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
